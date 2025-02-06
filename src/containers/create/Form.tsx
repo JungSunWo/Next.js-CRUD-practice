@@ -5,6 +5,13 @@ import TextArea from '@/components/TextArea'
 import { FormEvent, useState } from 'react'
 import ToastPopup from '@/components/ToastPopup'
 import { createPost } from '@/services/createAction'
+import {Calendar} from "@heroui/calendar";
+import {parseDate} from "@internationalized/date";
+
+import {HeroUIProvider} from '@heroui/react'
+import {I18nProvider} from "@react-aria/i18n";
+import {today, getLocalTimeZone} from "@internationalized/date";
+
 
 const Form = () => {
   // 토스트 알림에 띄울 에러메세지. 서버에서 받아온 에러메세지이다.
@@ -45,6 +52,13 @@ const Form = () => {
         <div className="w-3/4 mt-4">
           <TextArea id="content" name="content" />
         </div>
+        <HeroUIProvider>
+          <div className="flex gap-x-4">
+          <I18nProvider locale="ko-kr">
+            <Calendar aria-label="오늘날짜" showMonthAndYearPickers defaultValue={today(getLocalTimeZone())} />
+          </I18nProvider>
+          </div> 
+        </HeroUIProvider>
         <div className="w-2/4 mt-16">
           <Button text="Submit" variant="form" />
         </div>
