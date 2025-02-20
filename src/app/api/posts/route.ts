@@ -80,11 +80,20 @@ export async function POST(request: NextRequest) {
   const formData: FormData = await request.formData()
 
   // formData 변수에 get메서드를 사용하여 작성자, 제목, 내용 변수에 각각 담아준다.
+  const reg_dt: FormDataEntryValue | null = formData.get('reg_dt')
   const nickname: FormDataEntryValue | null = formData.get('nickname')
   const subject: FormDataEntryValue | null = formData.get('subject')
   const content: FormDataEntryValue | null = formData.get('content')
 
   // 타입 검사 string이 아니면 에러 반환
+  if (typeof reg_dt !== 'string') {
+    console.log("fffff" + typeof reg_dt);
+    return NextResponse.json(
+      { error: 'typeError. typeof reg_dt is not string' },
+      { status: 400 },
+    )
+  }
+
   if (typeof nickname !== 'string') {
     return NextResponse.json(
       { error: 'typeError. typeof nickname is not string' },
@@ -121,11 +130,12 @@ export async function POST(request: NextRequest) {
 
   try {
     const db: Connection = await dbConnection()
-    const sql = `insert into posts (nickname, subject, content, del) values (?, ?, ?, 0)`
+    const sql = "insert into posts (nickname, subject, content, del,reg_dt) values (?, ?, ?, 0, replace(?,'-',''))"
     const [result, field]: [PostType[], FieldPacket[]] = await db.execute(sql, [
       nickname,
       subject,
       content,
+      reg_dt,
     ])
     await db.end()
     return NextResponse.json(result)

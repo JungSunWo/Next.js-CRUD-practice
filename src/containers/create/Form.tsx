@@ -7,9 +7,11 @@ import ToastPopup from '@/components/ToastPopup'
 import { createPost } from '@/services/createAction'
 import {Calendar} from "@heroui/calendar";
 import {parseDate} from "@internationalized/date";
+import CustomDatepicker from '@/components/Datepicker';
+import util from "@/common/util"
 
 import {HeroUIProvider} from '@heroui/react'
-import {I18nProvider} from "@react-aria/i18n";
+ 
 import {today, getLocalTimeZone} from "@internationalized/date";
 
 
@@ -43,22 +45,20 @@ const Form = () => {
         onSubmit={onSubmit}
         className="w-full flex flex-col justify-center items-center"
       >
-        <div className="w-3/4 ">
+        <div className="w-3/4 "> 
+        <span>일정</span> <CustomDatepicker name="reg_dt"  /> 
+        </div>
+        <div className="w-3/4 mt-4"> 
           <Input id="nickname" name="nickname" type="text" />
         </div>
-        <div className="w-3/4 mt-4">
+        <div className="w-3/4 mt-4"> 
           <Input id="subject" name="subject" type="text" />
         </div>
         <div className="w-3/4 mt-4">
           <TextArea id="content" name="content" />
-        </div>
-        <HeroUIProvider>
-          <div className="flex gap-x-4">
-          <I18nProvider locale="ko-kr">
-            <Calendar aria-label="오늘날짜" showMonthAndYearPickers defaultValue={today(getLocalTimeZone())} />
-          </I18nProvider>
-          </div> 
-        </HeroUIProvider>
+        </div>  
+         
+        
         <div className="w-2/4 mt-16">
           <Button text="Submit" variant="form" />
         </div>

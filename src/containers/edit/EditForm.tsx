@@ -6,6 +6,7 @@ import ToastPopup from '@/components/ToastPopup'
 import { updatePost } from '@/services/updateAction'
 import { PostType } from '@/types/postType'
 import { FormEvent, useState } from 'react'
+import CustomDatepicker from '@/components/Datepicker';
 
 const EditForm = ({ post }: { post: PostType }) => {
   // 참고: 주석 containsers/create/Form.tsx와 동일
@@ -29,6 +30,9 @@ const EditForm = ({ post }: { post: PostType }) => {
         onSubmit={onSubmit}
         className="w-full h-full flex flex-col justify-center items-center"
       >
+        <div className="w-3/4 "> 
+        <span>일정</span> <CustomDatepicker name="reg_dt" selected={post?.reg_dt} /> 
+        </div>
         <div className="w-3/4">
           <Input
             id="nickname"

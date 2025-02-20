@@ -15,7 +15,8 @@ const PostCard = ({ post }: { post: PostType }) => {
       <div className="w-full flex justify-around">
         <div className="w-3/4 flex flex-col ">
           <Link href={`/post/${post.ps_id}`}>
-            <h1 className="text-3xl">{post.subject}</h1>
+          <section className="text-lg mt-4 truncate">일자 : {post.reg_dt}</section>
+            <h1 className="text-3xl"> {post.subject}</h1>
           </Link>
           <div>
             <section className="text-lg mt-4 truncate">{post.content}</section>

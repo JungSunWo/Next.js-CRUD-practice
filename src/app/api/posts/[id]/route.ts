@@ -73,6 +73,7 @@ export async function POST(
   const nickname: FormDataEntryValue | null = formdata.get('nickname')
   const subject: FormDataEntryValue | null = formdata.get('subject')
   const content: FormDataEntryValue | null = formdata.get('content')
+  const reg_dt: FormDataEntryValue | null = formdata.get('reg_dt')
 
   // 데이터 유효성 검증
   // 클라이언트 측에서 받아온 formData의 value들이 null이거나 빈 문자열일 경우
@@ -88,15 +89,16 @@ export async function POST(
   if (content === null || content === '') {
     return NextResponse.json({ error: '내용을 입력해주세요!' }, { status: 400 })
   }
-
+  
   try {
     const db: Connection = await dbConnection()
 
-    const sql = `update posts set nickname = ?, subject = ?, content = ?, updated_at = now()  where ps_id = ? and del = 0;`
+    const sql = "update posts set nickname = ?, subject = ?, content = ?, updated_at = now() ,reg_dt = replace(?,'-','') where ps_id = ? and del = 0;"
     const [result, field]: [PostType[], FieldPacket[]] = await db.execute(sql, [
       nickname,
       subject,
       content,
+      reg_dt,
       ps_id,
     ])
     await db.end()
