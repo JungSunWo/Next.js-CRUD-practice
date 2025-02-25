@@ -38,7 +38,7 @@ const Schedule_style = styled.div`
 .ctsLegendBottom p:last-child{ padding-left: 5.4rem; }
 `
 
-export default function schedule(){
+export default function Schedule(){
 
     const eventKindDvcd = "11";
     const showTimeDt = new Date();

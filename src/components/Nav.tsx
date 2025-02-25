@@ -29,10 +29,10 @@ const Nav = () => {
           </Link>
         </div>
         <div className="w-full m-4">
-            <Button text="일정목록(heroUI)" onClick={()=>movePage("/heroUIList")} variant="nav" />
+            <Button text="일정목록(heroUI)" onClick={()=>movePage("/HeroUIList")} variant="nav" />
         </div>
         <div className="w-full m-4">
-            <Button text="스케쥴" onClick={()=>movePage("/schedule")} variant="nav" />
+            <Button text="스케쥴" onClick={()=>movePage("/Schedule")} variant="nav" />
         </div>
       </div>
     </div>

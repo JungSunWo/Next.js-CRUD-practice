@@ -18,7 +18,7 @@ import useSWR from "swr";
 import {swrFetch}  from "@/common/fetch";  
   
 
-export default function heroUIList(){
+export default function HeroUIList(){
 
   const [page, setPage] = React.useState(1); 
   const [rowsPerPage, setrowsPerPage] = React.useState(2); 
