@@ -9,17 +9,21 @@ interface schedulType {
   params:{
     KIND_DVCD: string;
     YM?: string;
+  },
+  common:{
+    page: string;
+    limit: number;
   }
 
 }
 
 export async function POST(request: NextRequest) {
   // 페이지당 받아올 게시글 수
-  const limit = 31
-  // 쿼리스트링. null일 경우, 제일 첫 페이지이다.
-  const queryString: string | null = request.nextUrl.searchParams.get('page') 
+  let limit = 5
 
-  const { params } : schedulType  = await request.json();
+  const { params,common } : schedulType  = await request.json();
+  let queryString:  string | null   = (common?.page == undefined? null : common?.page);  
+  limit = (common?.limit == undefined ? limit : common?.limit);
 
   // 반환할 데이터
   const returnData: { data: PageInfoType } = {

@@ -29,6 +29,9 @@ const Nav = () => {
           </Link>
         </div>
         <div className="w-full m-4">
+            <Button text="일정목록(heroUI)" onClick={()=>movePage("/heroUIList")} variant="nav" />
+        </div>
+        <div className="w-full m-4">
             <Button text="스케쥴" onClick={()=>movePage("/schedule")} variant="nav" />
         </div>
       </div>

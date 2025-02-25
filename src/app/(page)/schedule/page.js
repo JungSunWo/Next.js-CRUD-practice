@@ -8,7 +8,7 @@ import styled,{css} from "styled-components";
 
 import util from "@/common/util";
 import strorage from "@/common/storage"
-import schedulFetch from "@/common/fetch"
+import {schedulFetch} from "@/common/fetch"
 
 
 const Schedule_style = styled.div`
